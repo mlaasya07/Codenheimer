@@ -164,11 +164,21 @@ The system supports ~50 unique rewards, mapped to 20+ interest categories:
 | Invalid interest input | Use interests from mapped categories (e.g., `movies`, `yoga`). |
 | Memory errors | Reduce `max_features` or use a higher-RAM system. |
 
+
+---
+
+## 🔍 References
+
+- Blog: https://appinventiv.com/blog/recommendation-system-machine-learning/
+- Youtube: [**🚀 Data Cleaning/Data Preprocessing Before Building a Model - A Comprehensive Guide**](https://youtu.be/GP-2634exqA?si=3qop1iAfk2z7IiTw)
+- Youtube: [Movie Recommendation System using Machine Learning with Python](https://youtu.be/7rEagFH9tQg?si=N3Qmpd-2rtzfyv20)
+- ChatGPT, Deepseek and Grok AI (for error checking and optimizing)
+  
 ## 📝 Conclusion
 
-Developed by **Team Codenheimer for the ‘Rayv Code-o-Tron 3000 Virtual Hackathon’.**
+- Developed by **Team Codenheimer** for the **‘Rayv Code-o-Tron 3000 Virtual Hackathon’**.
 
-Members:
+**Members**:
 
 - **Anirudh**
 - **Laasya**
