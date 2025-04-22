@@ -12,7 +12,7 @@ The Recommendation System processes a dataset of 10,000 users to generate tailor
 - NLP preprocessing for text standardization and interest mapping
 - TF-IDF vectorization and cosine similarity for user matching
 - Tiered recommendations (basic: <50, standard: 50-74, premium: ≥75) based on activity score `(Stretch Goal)`
-- Evaluation accuracy of 98.2% on a 500-user subset
+- Evaluation accuracy of 99.4% on a 500-user subset
 - Caching and sparse matrices for optimized performance
 
 ## 🛠️ System Requirements
