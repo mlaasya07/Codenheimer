@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reward Recommender</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="background-overlay">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h1 class="title">🌿 Reward Recommender 🌿</h1>
+                <p class="subtitle">Choose your interests and let the magic guide your rewards</p>
+            </div>
+
+            <div class="card shadow-lg p-4 custom-card mx-auto">
+                        <form id="interest-form">
+                            <div class="mb-3">
+                                <h3 class="form-label">✨ Select Your Interests:</h3>
+                                <div id="interests-container" class="d-flex flex-wrap gap-2">
+                                    <!-- Buttons will be populated dynamically -->
+                                </div>
+                                <div id="interest-error" class="text-danger mt-2 d-none">
+                                    <h6> Please select up to 3 interests. </h6>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn custom-btn w-100">Get Recommendations</button>
+                        </form>
+
+                <div id="results" class="mt-5 d-none">
+                    <h3 class="text-success">🎁 Your Recommendations</h3>
+                    <p><strong>Interests:</strong> <span id="processed-interests"></span></p>
+                    <p><strong>Rewards:</strong> <span id="recommended-rewards"></span></p>
+                    <p><strong>Tier:</strong> <span id="tier"></span></p>
+                </div>
+
+                <div id="error" class="alert alert-danger mt-4 d-none"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
