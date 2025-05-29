@@ -79,6 +79,35 @@ df['past_rewards'] = df['past_rewards'].apply(standardize_terms)
 df['interests_original'] = df['interests']
 df['past_rewards_original'] = df['past_rewards']
 
+def recommend_for_new_user(user_input):
+    # Standardize input terms similar to dataset
+    user_input_standard = standardize_terms(user_input.lower())
+    user_interests = user_input_standard.split()
+    
+    # Combine interests and past_rewards columns for comparison
+    df['combined'] = df['interests'] + ' ' + df['past_rewards']
+    
+    # TF-IDF vectorizer (fit on combined dataset)
+    vectorizer = TfidfVectorizer()
+    tfidf_matrix = vectorizer.fit_transform(df['combined'])
+    
+    # Vectorize the user input
+    user_vec = vectorizer.transform([' '.join(user_interests)])
+    
+    # Compute cosine similarities
+    cosine_similarities = cosine_similarity(user_vec, tfidf_matrix).flatten()
+    
+    # Get indices of top 5 matches
+    top_indices = cosine_similarities.argsort()[-5:][::-1]
+    
+    # Collect recommendations from those indices (original past_rewards for better clarity)
+    recommendations = df.iloc[top_indices]['past_rewards_original'].tolist()
+    
+    # Determine tier based on number of interests: premium if 3 or more, else standard
+    tier = 'premium' if len(user_interests) >= 3 else 'standard'
+    
+    return recommendations, tier, user_input_standard
+
 @app.route('/')
 def home():
     return render_template('index.html')
