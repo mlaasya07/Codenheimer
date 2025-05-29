@@ -41,26 +41,6 @@ term_mappings = {
     'museum pass': 'museum_pass', 'yoga session': 'yoga_session', 'board game': 'board_game'
 }
 
-@app.route('/interests', methods=['GET'])
-def get_interests():
-    # Get all unique mapped interests
-    unique_interests = sorted(set(interest_mappings.values()))
-    return jsonify({'interests': unique_interests})
-
-def standardize_terms(text):
-    if not isinstance(text, str):
-        return text
-    for term, replacement in term_mappings.items():
-        text = text.replace(term, replacement)
-    return text
-
-df['interests'] = df['interests'].apply(lambda x: ' '.join(str(x).split(',')) if pd.notnull(x) else '')
-df['past_rewards'] = df['past_rewards'].apply(lambda x: ' '.join(str(x).split(',')) if pd.notnull(x) else '')
-df['interests'] = df['interests'].apply(standardize_terms)
-df['past_rewards'] = df['past_rewards'].apply(standardize_terms)
-df['interests_original'] = df['interests']
-df['past_rewards_original'] = df['past_rewards']
-
 interest_mappings = {
     'movies': 'movies', 'movie': 'movies', 'gaming': 'gaming', 'game': 'gaming', 'music': 'music',
     'books': 'books', 'book': 'books', 'reading': 'books',
@@ -84,6 +64,20 @@ interest_mappings = {
     'yoga': 'yoga', 'meditation': 'yoga', 'wellness': 'yoga',
     'board games': 'board_games', 'tabletop': 'board_games', 'strategy games': 'board_games'
 }
+
+def standardize_terms(text):
+    if not isinstance(text, str):
+        return text
+    for term, replacement in term_mappings.items():
+        text = text.replace(term, replacement)
+    return text
+
+df['interests'] = df['interests'].apply(lambda x: ' '.join(str(x).split(',')) if pd.notnull(x) else '')
+df['past_rewards'] = df['past_rewards'].apply(lambda x: ' '.join(str(x).split(',')) if pd.notnull(x) else '')
+df['interests'] = df['interests'].apply(standardize_terms)
+df['past_rewards'] = df['past_rewards'].apply(standardize_terms)
+df['interests_original'] = df['interests']
+df['past_rewards_original'] = df['past_rewards']
 
 @app.route('/')
 def home():
@@ -114,3 +108,4 @@ def recommend():
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
+
